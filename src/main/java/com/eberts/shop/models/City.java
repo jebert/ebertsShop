@@ -1,14 +1,22 @@
 package com.eberts.shop.models;
 
 import java.io.Serializable;
+
 import java.util.Objects;
 
 import com.eberts.shop.models.enums.StateCode;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "cities")
 public class City implements Serializable {
 
 	private static final long serialVersionUID = 1L;	
 
+	@Id
 	private Integer ibgeCode;
 	private String name;
 	private String state;
