@@ -7,7 +7,7 @@ import com.eberts.shop.models.enums.StateCode;
 
 public class City implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 
 	private Integer ibgeCode;
 	private String name;
