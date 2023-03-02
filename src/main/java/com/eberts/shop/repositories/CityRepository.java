@@ -14,6 +14,11 @@ public interface CityRepository extends JpaRepository<City, Integer> {
      Page<City> findCityByName(
              @Param("cityName") String cityName, 
              Pageable pageable);
+    
+    @Query("FROM City c where c.state = :state AND c.name like %:cityName%")
+    Page<City> findCityByState(
+            @Param("cityName") String cityName, 
+            @Param("state") String state, 
+            Pageable pageable);
 	
-
 }

@@ -26,12 +26,24 @@ public class CityService {
 	public Page<City> findPage(Integer page, Integer linesPerPage, String direction, String order ){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction) , order);	
 		
-		return cityRepository.findAll(pageRequest);
+		Page<City> p = cityRepository.findAll(pageRequest);
+		System.out.println(p);
+		return p;
 	}
 	
 	public Page<City> findCityByName(String name, Integer page, Integer linesPerPage, String direction, String order){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction) , order);	
-		return cityRepository.findCityByName(name, pageRequest);
+		Page<City> p = cityRepository.findCityByName(name, pageRequest);
+		System.out.println(p.toString());
+		return p;
+	}
+	
+	public Page<City> findCityByNameAndState(String name, String state, Integer page, Integer linesPerPage, String direction, String order){
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction) , order);	
+		Page<City> p = cityRepository.findCityByState(name,state, pageRequest);
+		
+		System.out.println(p.toString());
+		return p;
 	}
 
 }
