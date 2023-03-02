@@ -15,7 +15,7 @@ public interface CityRepository extends JpaRepository<City, Integer> {
              @Param("cityName") String cityName, 
              Pageable pageable);
     
-    @Query("FROM City c where c.state = :state AND lower(c.name) like lower(concat('%', :cityName,'%'))")
+    @Query("FROM City c where lower(c.state) = :state AND lower(c.name) like lower(concat('%', :cityName,'%'))")
     Page<City> findCityByStateIgnoreCase(
             @Param("cityName") String cityName, 
             @Param("state") String state, 

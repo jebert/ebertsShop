@@ -1,4 +1,4 @@
-package com.eberts.shop.models.dao;
+package com.eberts.shop.models.vo;
 
 import java.io.Serializable;
 import java.util.Objects;
