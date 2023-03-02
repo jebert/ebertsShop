@@ -10,13 +10,13 @@ import com.eberts.shop.models.City;
 
 public interface CityRepository extends JpaRepository<City, Integer> {
 
-    @Query("FROM City c WHERE c.name like %:cityName%")
-     Page<City> findCityByName(
+    @Query("FROM City c WHERE lower(c.name) like lower(concat('%', :cityName,'%'))")
+     Page<City> findCityByNameIgnoreCase(
              @Param("cityName") String cityName, 
              Pageable pageable);
     
-    @Query("FROM City c where c.state = :state AND c.name like %:cityName%")
-    Page<City> findCityByState(
+    @Query("FROM City c where c.state = :state AND lower(c.name) like lower(concat('%', :cityName,'%'))")
+    Page<City> findCityByStateIgnoreCase(
             @Param("cityName") String cityName, 
             @Param("state") String state, 
             Pageable pageable);

@@ -33,14 +33,14 @@ public class CityService {
 	
 	public Page<City> findCityByName(String name, Integer page, Integer linesPerPage, String direction, String order){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction) , order);	
-		Page<City> p = cityRepository.findCityByName(name, pageRequest);
+		Page<City> p = cityRepository.findCityByNameIgnoreCase(name, pageRequest);
 		System.out.println(p.toString());
 		return p;
 	}
 	
 	public Page<City> findCityByNameAndState(String name, String state, Integer page, Integer linesPerPage, String direction, String order){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction) , order);	
-		Page<City> p = cityRepository.findCityByState(name,state, pageRequest);
+		Page<City> p = cityRepository.findCityByStateIgnoreCase(name,state, pageRequest);
 		
 		System.out.println(p.toString());
 		return p;

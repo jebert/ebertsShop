@@ -35,7 +35,7 @@ public class CityResource {
 	public ResponseEntity<?> findAllCitiesByState(
 			@PathVariable String name,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "0")  Integer linesPerPage,
+			@RequestParam(value = "linesPerPage", defaultValue = "5")  Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC")  String direction,
 			@RequestParam(value = "orderBy", defaultValue = "name")  String orderBy
 			
@@ -48,7 +48,7 @@ public class CityResource {
 	public ResponseEntity<?> findAllCities(
 			@PathVariable String name,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "0")  Integer linesPerPage,
+			@RequestParam(value = "linesPerPage", defaultValue = "5")  Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC")  String direction,
 			@RequestParam(value = "orderBy", defaultValue = "name")  String orderBy
 			
