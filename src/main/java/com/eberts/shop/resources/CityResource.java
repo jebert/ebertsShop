@@ -46,7 +46,6 @@ public class CityResource {
 	
 	@GetMapping
 	public ResponseEntity<?> findAllCities(
-			@PathVariable String name,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "5")  Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC")  String direction,
@@ -54,7 +53,7 @@ public class CityResource {
 			
 			) {
 		//String name, String state, Integer page, Integer linesPerPage, String direction, String order
-		return ResponseEntity.ok(cityService.findCityByName(name, page, linesPerPage, direction, orderBy));
+		return ResponseEntity.ok(cityService.findPage( page, linesPerPage, direction, orderBy));
 	}
 
 }
