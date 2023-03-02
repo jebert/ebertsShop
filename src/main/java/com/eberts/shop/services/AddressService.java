@@ -42,24 +42,24 @@ public class AddressService {
 		return Optional.of(address.orElseThrow(()-> new ObjectNotFoundException("Address not found with id:" + id.toString())));
 	}
 	
-	public Optional<AddressVoForViaCep> findAddressByCep(String cep) {
+	public Optional<Address> findAddressByCep(String cep) {
 		AddressVoForViaCep x = new RestTemplate().getForEntity("https://viacep.com.br/ws/" +cep+ "/json/", AddressVoForViaCep.class).getBody();
+		
 		if(x.getCep() == null) throw new ObjectNotFoundException("CEP: " + cep + " is not valid!");
-		return Optional.of(x) ;
+		return Optional.of(convertFromAddressVoForViaCep(x)) ;
 	}
 	
-	public List<AddressVoForViaCep> getAddressByAddressPartial(String state, String city, String street){
+	public List<Address> getAddressByAddressPartial(String state, String city, String street){
 
-		List<AddressVoForViaCep> lista = new ArrayList<>();
+		List<Address> lista = new ArrayList<>();
 
-		
 		AddressVoForViaCep[] lista1 = new RestTemplate()
 				.getForEntity("https://viacep.com.br/ws/"+ state +"/" +city+ "/" + street + "/json/", AddressVoForViaCep[].class).getBody();
 
 		for (AddressVoForViaCep add : lista1) {
 			AddressVoForViaCep address = new AddressVoForViaCep();
 			BeanUtils.copyProperties( add, address);
-			lista.add(address);
+			lista.add(convertFromAddressVoForViaCep(address));
 		}
 		 return lista;
 	}

@@ -57,7 +57,6 @@ public enum StateCode {
 				return uf;
 			}
 		}
-
 		throw new IllegalArgumentException(acronym);
 	}
 
@@ -67,7 +66,6 @@ public enum StateCode {
 				return uf;
 			}
 		}
-
 		throw new IllegalArgumentException(capital);
 	}
 
