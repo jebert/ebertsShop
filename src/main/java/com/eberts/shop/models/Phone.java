@@ -18,6 +18,7 @@ public class Phone implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
+	private Integer ddd;
 	private String number;
 	private Boolean isWhatsApp;
 	private Integer phoneType;
@@ -27,9 +28,10 @@ public class Phone implements Serializable{
 
 	public Phone() {}
 
-	public Phone(UUID id, String number, Boolean isWhatsApp, Integer phoneType, Person owner) {
+	public Phone(UUID id, Integer ddd, String number, Boolean isWhatsApp, Integer phoneType, Person owner) {
 		super();
 		this.id = id;
+		this.ddd = ddd;
 		this.number = number;
 		this.isWhatsApp = isWhatsApp;
 		this.phoneType = phoneType;
@@ -43,7 +45,15 @@ public class Phone implements Serializable{
 	public void setId(UUID id) {
 		this.id = id;
 	}
+	
+	public Integer getDdd() {
+		return ddd;
+	}
 
+	public void setDdd(Integer ddd) {
+		this.ddd = ddd;
+	}
+	
 	public String getNumber() {
 		return number;
 	}

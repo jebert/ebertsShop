@@ -1,13 +1,9 @@
 package com.eberts.shop.models;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity	
@@ -21,13 +17,7 @@ public class Client extends Person {
     private String password;
     private String gender;
     
-	@JsonManagedReference
-	@OneToMany
-    private List<Document> documents;
-    
-	@JsonManagedReference
-	@OneToMany
-    private List<Address> addresses;
+
 	
     public Client() {}
 
@@ -71,25 +61,16 @@ public class Client extends Person {
 		this.gender = gender;
 	}
 
-	public List<Document> getDocuments() {
-		return documents;
-	}
-
-	public void setDocuments(List<Document> documents) {
-		this.documents = documents;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(documents, gender, lastName, password, userName);
+		result = prime * result + Objects.hash(userName);
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
@@ -97,10 +78,10 @@ public class Client extends Person {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		return Objects.equals(documents, other.documents) && Objects.equals(gender, other.gender)
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(userName, other.userName);
+		return Objects.equals(userName, other.userName);
 	}
+
+
 	
 }
 

@@ -31,11 +31,15 @@ public class Person implements Serializable{
     
 	@JsonManagedReference
 	@OneToMany
-    private List<Phone> phones;
+    private List<Phone> phones = new ArrayList<>();
     
 	@JsonManagedReference
 	@OneToMany
 	private List<Address> addresses = new ArrayList<>();
+	
+	@JsonManagedReference
+	@OneToMany
+    private List<Document> documents = new ArrayList<>();
 
 	public Person() {}
 
@@ -84,10 +88,18 @@ public class Person implements Serializable{
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
+	
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(documents, id);
 	}
 
 	@Override
@@ -99,9 +111,8 @@ public class Person implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(documents, other.documents) && Objects.equals(id, other.id);
 	}
-	
-	
-	
+
+
 }
