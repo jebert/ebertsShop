@@ -62,7 +62,7 @@ public class AddressService {
 	}
 	
 	public void delete(UUID uuid) {
-		Address ad = addressRepository.findById(uuid).orElseThrow(() -> new ObjectNotFoundException("Address not found with id: " +uuid.toString()));
+		Address ad = findAddressById(uuid).get();
 		addressRepository.delete(ad);;
 	}
 	
