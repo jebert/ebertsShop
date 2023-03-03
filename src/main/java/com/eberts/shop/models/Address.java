@@ -31,10 +31,15 @@ public class Address implements Serializable{
 	private String complement;
 	private String district;
 	private boolean deliveryAddress;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "clientId")
+	private Client owner;
+	
 	@ManyToOne
 	@JoinColumn(name = "ibgeCode")
     private City city;
+
 	
 	public Address() {}
 

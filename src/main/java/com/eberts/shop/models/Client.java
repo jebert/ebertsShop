@@ -25,6 +25,10 @@ public class Client extends Person {
 	@OneToMany
     private List<Document> documents;
     
+	@JsonManagedReference
+	@OneToMany
+    private List<Address> addresses;
+	
     public Client() {}
 
 	public Client(UUID id, String name, String email,String lastName, String userName, String password, String gender) {
