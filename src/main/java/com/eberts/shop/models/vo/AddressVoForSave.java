@@ -3,11 +3,17 @@ package com.eberts.shop.models.vo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class AddressVoForSave implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-		
+	
+	@NotBlank(message = "Cep is required!")
+	@Pattern(regexp = "[0-9]{5}-[0-9]{3}|[0-9]{5}[0-9]{3}", message = "Please insert a valid CEP! - XXXXXX-XXX")
 	private String cep;
+	@NotBlank(message = "Number is required!")
 	private String number;
 	private String complement;
 	private Boolean deliveryAddress;

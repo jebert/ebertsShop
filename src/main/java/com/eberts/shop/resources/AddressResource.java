@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "address")
@@ -71,7 +72,7 @@ public class AddressResource {
 			@ApiResponse(description = "Unauthorized", responseCode = "403", content = @Content),
 			@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
 			@ApiResponse(description = "Internal  Error", responseCode = "500", content = @Content) })
-	public ResponseEntity<?> saveAddress(@RequestBody AddressVoForSave addressvo) {
+	public ResponseEntity<?> saveAddress(@RequestBody @Valid AddressVoForSave addressvo) {
 		Address address = addressService.findAddressByCep(addressvo.getCep()).get();
 		address.setNumber(addressvo.getNumber());
 		address.setDeliveryAddress(addressvo.getDeliveryAddress());
@@ -105,7 +106,7 @@ public class AddressResource {
 			@ApiResponse(description = "Internal  Error", responseCode = "500", content = @Content) })
 	public ResponseEntity<?> updateAddress(
 			@PathVariable UUID uuid, 
-			@RequestBody AddressVoForSave addressvo) {
+			@RequestBody @Valid AddressVoForSave addressvo) {
 		Address newAddress = addressService.findAddressByCep(addressvo.getCep()).get();
 		Address address = addressService.findAddressById(uuid).get();
 		newAddress.setNumber(addressvo.getNumber());
