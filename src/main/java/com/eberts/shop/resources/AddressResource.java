@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eberts.shop.models.Address;
-import com.eberts.shop.models.vo.AddressVoForSave;
+import com.eberts.shop.models.vo.AddressVo;
 import com.eberts.shop.services.AddressService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -72,7 +72,7 @@ public class AddressResource {
 			@ApiResponse(description = "Unauthorized", responseCode = "403", content = @Content),
 			@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
 			@ApiResponse(description = "Internal  Error", responseCode = "500", content = @Content) })
-	public ResponseEntity<?> saveAddress(@RequestBody @Valid AddressVoForSave addressvo) {
+	public ResponseEntity<?> saveAddress(@RequestBody @Valid AddressVo addressvo) {
 		Address address = addressService.findAddressByCep(addressvo.getCep()).get();
 		address.setNumber(addressvo.getNumber());
 		address.setDeliveryAddress(addressvo.getDeliveryAddress());
@@ -106,7 +106,7 @@ public class AddressResource {
 			@ApiResponse(description = "Internal  Error", responseCode = "500", content = @Content) })
 	public ResponseEntity<?> updateAddress(
 			@PathVariable UUID uuid, 
-			@RequestBody @Valid AddressVoForSave addressvo) {
+			@RequestBody @Valid AddressVo addressvo) {
 		Address newAddress = addressService.findAddressByCep(addressvo.getCep()).get();
 		Address address = addressService.findAddressById(uuid).get();
 		newAddress.setNumber(addressvo.getNumber());

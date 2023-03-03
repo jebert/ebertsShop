@@ -6,7 +6,7 @@ import java.util.Objects;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public class AddressVoForSave implements Serializable{
+public class AddressVo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -18,9 +18,9 @@ public class AddressVoForSave implements Serializable{
 	private String complement;
 	private Boolean deliveryAddress;
 	
-	public AddressVoForSave() {}
+	public AddressVo() {}
 
-	public AddressVoForSave(String cep, String number, String complement, Boolean deliveryAddress) {
+	public AddressVo(String cep, String number, String complement, Boolean deliveryAddress) {
 		super();
 		this.cep = cep;
 		this.number = number;
@@ -73,7 +73,7 @@ public class AddressVoForSave implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AddressVoForSave other = (AddressVoForSave) obj;
+		AddressVo other = (AddressVo) obj;
 		return Objects.equals(cep, other.cep) && Objects.equals(complement, other.complement)
 				&& Objects.equals(deliveryAddress, other.deliveryAddress) && Objects.equals(number, other.number);
 	}

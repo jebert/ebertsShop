@@ -62,8 +62,7 @@ public class AddressService {
 	}
 	
 	public void delete(UUID uuid) {
-		Address ad = findAddressById(uuid).get();
-		addressRepository.delete(ad);;
+		addressRepository.delete(findAddressById(uuid).get());;
 	}
 	
 	public Address convertFromAddressVoForViaCep (AddressVoForViaCep vo) {
