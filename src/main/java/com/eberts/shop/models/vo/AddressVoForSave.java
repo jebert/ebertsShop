@@ -6,7 +6,7 @@ import java.util.Objects;
 public class AddressVoForSave implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
+		
 	private String cep;
 	private String number;
 	private String complement;
