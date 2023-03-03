@@ -27,10 +27,7 @@ public class AddressService {
 	public AddressService() {}
 
 	@Transactional
-	public Address saveAddress(Address address, String number) {
-		if (address.getNumber() == null) 
-			address.setNumber(number);
-			
+	public Address saveAddress(Address address) {
 		return address = addressRepository.save(address);
 	}
 	public List<Address> findAllAddresss() {
@@ -64,9 +61,16 @@ public class AddressService {
 		 return lista;
 	}
 	
+	public void delete(UUID uuid) {
+		Address ad = addressRepository.findById(uuid).orElseThrow(() -> new ObjectNotFoundException("Address not found with id: " +uuid.toString()));
+		addressRepository.delete(ad);;
+	}
+	
 	public Address convertFromAddressVoForViaCep (AddressVoForViaCep vo) {
 		City city = new City(vo.getLocalidade(), vo.getUf(), vo.getIbge());
 		return new Address(null, vo.getCep(), vo.getLogradouro(), null, vo.getComplemento(), vo.getBairro(), false, city);
 	}
+
+
 	
 }
