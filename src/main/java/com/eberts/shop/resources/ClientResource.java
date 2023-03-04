@@ -73,10 +73,8 @@ public class ClientResource {
 			@ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
 			@ApiResponse(description = "Internal  Error", responseCode = "500", content = @Content) })
 	public ResponseEntity<?> saveClient(@RequestBody @Valid ClientVo clientvo) {
-
-
-
-		return ResponseEntity.status(HttpStatus.CREATED).body(clientService.saveClient(client));
+		Client client = clientService.saveClient(clientService.converFromClientVo(clientvo));
+		return ResponseEntity.status(HttpStatus.CREATED).body(client);
 
 	}
 
@@ -105,12 +103,8 @@ public class ClientResource {
 	public ResponseEntity<?> updateClient(
 			@PathVariable UUID uuid, 
 			@RequestBody @Valid ClientVo clientvo) {
-		Client newClient = clientService.findClientById(clientvo.get()).get();
-		/*Client client = clientService.findClientById(uuid).get();
-		newClient.setNumber(clientvo.getNumber());
-		newClient.setDeliveryClient(clientvo.getDeliveryClient());
-		newClient.setComplement(clientvo.getComplement());
-		newClient.setId(client.getId());*/
+		Client newClient = clientService.findClientById(uuid).get();
+
 
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(clientService.saveClient(newClient));
 

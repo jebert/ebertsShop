@@ -22,20 +22,16 @@ public class Phone implements Serializable{
 	private String number;
 	private Boolean isWhatsApp;
 	private Integer phoneType;
-	
-	@ManyToOne
-	private Person owner;
 
 	public Phone() {}
 
-	public Phone(UUID id, Integer ddd, String number, Boolean isWhatsApp, Integer phoneType, Person owner) {
+	public Phone(UUID id, Integer ddd, String number, Boolean isWhatsApp, Integer phoneType) {
 		super();
 		this.id = id;
 		this.ddd = ddd;
 		this.number = number;
 		this.isWhatsApp = isWhatsApp;
 		this.phoneType = phoneType;
-		this.owner = owner;
 	}
 
 	public UUID getId() {
@@ -77,16 +73,5 @@ public class Phone implements Serializable{
 	public void setPhoneType(PhoneType phoneType) {
 		this.phoneType = phoneType.getCod();
 	}
-
-	public Person getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Person owner) {
-		this.owner = owner;
-	}
-	
-	
-	
 
 }

@@ -35,16 +35,14 @@ public class Address implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "clientId")
 	private Client owner;
-	
-	@ManyToOne
-	@JoinColumn(name = "ibgeCode")
-    private City city;
+
+    private Integer city;
 
 	
 	public Address() {}
 
 	public Address(UUID id, String zip, String street, String number, String complement, String district,
-			boolean deliveryAddress, City city) {
+			boolean deliveryAddress, Integer city) {
 		this.id = id;
 		this.zip = zip;
 		this.street = street;
@@ -111,11 +109,11 @@ public class Address implements Serializable{
 		this.deliveryAddress = deliveryAddress;
 	}
 
-	public City getCity() {
+	public Integer getCity() {
 		return city;
 	}
 
-	public void setCity(City city) {
+	public void setCity(Integer city) {
 		this.city = city;
 	}
 

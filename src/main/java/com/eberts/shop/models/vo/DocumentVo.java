@@ -3,6 +3,9 @@ package com.eberts.shop.models.vo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.eberts.shop.models.Document;
+import com.eberts.shop.models.helpers.DocType;
+
 public class DocumentVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -15,6 +18,9 @@ public class DocumentVo implements Serializable {
 	public DocumentVo(String document, String docType) {
 		this.document = document;
 		this.docType = docType;
+	}
+	public Document ConvertFromVo (DocumentVo documentVo) {
+		return new Document(null, documentVo.document,DocType.fromDocName(documentVo.docType));
 	}
 
 	public String getDocument() {

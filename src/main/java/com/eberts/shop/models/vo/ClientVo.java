@@ -15,8 +15,6 @@ import jakarta.persistence.OneToMany;
 public class ClientVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-    private UUID id;
 
     private String name;
 	private String lastName;
@@ -29,14 +27,13 @@ public class ClientVo implements Serializable {
 
 	private List<AddressVo> addresses = new ArrayList<>();
 
-    private List<DocumentVo> documents = new ArrayList<>();
+    private List<Document> documents = new ArrayList<>();
 
 	public ClientVo() {
 	}
 
-	public ClientVo(UUID id, String name, String lastName, String userName, String email, String password,
-			String gender, List<PhoneVo> phones, List<AddressVo> addresses, List<DocumentVo> documents) {
-		this.id = id;
+	public ClientVo( String name, String lastName, String userName, String email, String password,
+			String gender, List<PhoneVo> phones, List<AddressVo> addresses, List<Document> documents) {
 		this.name = name;
 		this.lastName = lastName;
 		this.userName = userName;
@@ -48,13 +45,6 @@ public class ClientVo implements Serializable {
 		this.documents = documents;
 	}
 
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -120,11 +110,11 @@ public class ClientVo implements Serializable {
 		this.addresses = addresses;
 	}
 
-	public List<DocumentVo> getDocuments() {
+	public List<Document> getDocuments() {
 		return documents;
 	}
 
-	public void setDocuments(List<DocumentVo> documents) {
+	public void setDocuments(List<Document> documents) {
 		this.documents = documents;
 	}
     

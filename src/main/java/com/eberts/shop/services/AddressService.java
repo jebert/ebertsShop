@@ -12,11 +12,13 @@ import org.springframework.web.client.RestTemplate;
 
 import com.eberts.shop.models.Address;
 import com.eberts.shop.models.City;
+import com.eberts.shop.models.vo.AddressVo;
 import com.eberts.shop.models.vo.AddressVoForViaCep;
 import com.eberts.shop.repositories.AddressRepository;
 import com.eberts.shop.services.exceptions.ObjectNotFoundException;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotBlank;
 
 @Service
 public class AddressService {
@@ -66,10 +68,21 @@ public class AddressService {
 	}
 	
 	public Address convertFromAddressVoForViaCep (AddressVoForViaCep vo) {
-		City city = new City(vo.getLocalidade(), vo.getUf(), vo.getIbge());
-		return new Address(null, vo.getCep(), vo.getLogradouro(), null, vo.getComplemento(), vo.getBairro(), false, city);
+		return new Address(null, vo.getCep(), vo.getLogradouro(), null, vo.getComplemento(), vo.getBairro(), false, vo.getIbge());
+	}
+	
+	public Address ConvertAddressFromVo (AddressVo addressVo) {
+		Address address = findAddressByCep(addressVo.getCep()).get();
+		address.setNumber(addressVo.getNumber());
+		address.setComplement(addressVo.getComplement());
+		address.setDeliveryAddress(addressVo.getDeliveryAddress());
+		
+		return address;
 	}
 
-
+/*	private String cep;
+	private String number;
+	private String complement;
+	private Boolean deliveryAddress;*/
 	
 }

@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,15 +31,15 @@ public class Person implements Serializable{
     private String email;
     
 	@JsonManagedReference
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
     private List<Phone> phones = new ArrayList<>();
     
 	@JsonManagedReference
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<>();
 	
 	@JsonManagedReference
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
     private List<Document> documents = new ArrayList<>();
 
 	public Person() {}

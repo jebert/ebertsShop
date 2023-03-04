@@ -1,13 +1,13 @@
 package com.eberts.shop.models.vo;
 
 import java.io.Serializable;
-import java.util.UUID;
+
+import com.eberts.shop.models.Phone;
 
 public class PhoneVo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
-	private UUID id;
+
 	private Integer ddd;
 	private String number;
 	private Boolean isWhatsApp;
@@ -15,22 +15,20 @@ public class PhoneVo implements Serializable{
 
 	public PhoneVo() {
 	}
+	
+	public Phone convertFromVo(PhoneVo phoneVo) {
+		return new Phone(null, phoneVo.getDdd(), phoneVo.getNumber(), phoneVo.getIsWhatsApp(), phoneVo.getPhoneType());
+	}
 
-	public PhoneVo(UUID id, Integer ddd, String number, Boolean isWhatsApp, Integer phoneType) {
-		this.id = id;
+	public PhoneVo(Integer ddd, String number, Boolean isWhatsApp, Integer phoneType) {
+
 		this.ddd = ddd;
 		this.number = number;
 		this.isWhatsApp = isWhatsApp;
 		this.phoneType = phoneType;
 	}
 
-	public UUID getId() {
-		return id;
-	}
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
 
 	public Integer getDdd() {
 		return ddd;
