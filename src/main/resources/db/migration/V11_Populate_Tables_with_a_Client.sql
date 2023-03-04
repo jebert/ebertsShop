@@ -1,0 +1,14 @@
+INSERT INTO public.addresses (id, ibge_code, complement, delivery_address, district, number, street, zip) VALUES ('1ff0d7c9-c887-437c-94df-84b6582c4054', 4319901, '', true, 'Sete de Setembro', '68', 'Rua Quatorze', '93819-094');
+INSERT INTO public.addresses (id, ibge_code, complement, delivery_address, district, number, street, zip) VALUES ('9d02cd0c-6868-43ba-bcfd-7c8a6988a381', 4319901, 'Apto 701', false, 'Centro', '193', 'Rua Tiradentes', '93800-034');
+INSERT INTO public.clients (gender, last_name, password, user_name, id) VALUES ('M', 'Ebert', 'string', 'jebert', '6d237a36-f6df-44c9-b241-d2b8feda24fc');
+INSERT INTO public.document (id, doc_type, document) VALUES ('2317bcfc-3f34-4dec-b873-7fc3c3caad6f', 'CPF', '00263747069');
+INSERT INTO public.document (id, doc_type, document) VALUES ('8117abd5-951a-42e1-b489-8da3facb4637', 'RG', '1084873064');
+INSERT INTO public.person (id, email, name) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', 'jonatan.ebert@gmail.com', 'Jonatan');
+INSERT INTO public.person_addresses (person_id, addresses_id) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', '1ff0d7c9-c887-437c-94df-84b6582c4054');
+INSERT INTO public.person_addresses (person_id, addresses_id) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', '9d02cd0c-6868-43ba-bcfd-7c8a6988a381');
+INSERT INTO public.person_documents (person_id, documents_id) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', '2317bcfc-3f34-4dec-b873-7fc3c3caad6f');
+INSERT INTO public.person_documents (person_id, documents_id) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', '8117abd5-951a-42e1-b489-8da3facb4637');
+INSERT INTO public.person_phones (person_id, phones_id) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', 'fae13977-9c29-4d69-a9d6-807b24ba59f3');
+INSERT INTO public.person_phones (person_id, phones_id) VALUES ('6d237a36-f6df-44c9-b241-d2b8feda24fc', '4ebc9fa6-c75f-4c86-aafc-561b0cb2bfbb');
+INSERT INTO public.phone (id, ddd, is_whats_app, number, phone_type) VALUES ('fae13977-9c29-4d69-a9d6-807b24ba59f3', 51, true, '997285454', 2);
+INSERT INTO public.phone (id, ddd, is_whats_app, number, phone_type) VALUES ('4ebc9fa6-c75f-4c86-aafc-561b0cb2bfbb', 51, false, '999297115', 2);
