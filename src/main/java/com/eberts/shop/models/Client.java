@@ -17,8 +17,6 @@ public class Client extends Person {
     private String password;
     private String gender;
     
-
-	
     public Client() {}
 
 	public Client(UUID id, String name, String email,String lastName, String userName, String password, String gender) {

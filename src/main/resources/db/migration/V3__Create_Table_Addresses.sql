@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS addresses
     street character varying(255),
     zip character varying(10),
     ibge_code integer,
+    client_id uuid,
     CONSTRAINT addresses_pkey PRIMARY KEY (id),
     CONSTRAINT city_pkey FOREIGN KEY (ibge_code)
         REFERENCES public.cities (ibge_code) MATCH SIMPLE

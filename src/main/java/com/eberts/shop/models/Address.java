@@ -35,7 +35,8 @@ public class Address implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "clientId")
 	private Client owner;
-
+	
+	@Column(name = "ibge_code")
     private Integer city;
 
 	

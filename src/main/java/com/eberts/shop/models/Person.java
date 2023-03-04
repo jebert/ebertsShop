@@ -39,7 +39,7 @@ public class Person implements Serializable{
 	private List<Address> addresses = new ArrayList<>();
 	
 	@JsonManagedReference
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany( cascade = CascadeType.ALL)
     private List<Document> documents = new ArrayList<>();
 
 	public Person() {}
