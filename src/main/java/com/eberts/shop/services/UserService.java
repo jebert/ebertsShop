@@ -16,13 +16,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService{
 
 
 	private UserRepository repository;
 	@Autowired
 	public UserService(UserRepository userRepository) {
-		userRepository = userRepository;
+		this.repository = userRepository;
 	}
 
 	public UserService() {}
@@ -47,16 +47,6 @@ public class UserService implements UserDetailsService {
 		repository.delete(findUserById(uuid).get());
 	}
 
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		var user = repository.findByUserName(username);
-		if (user != null) {
-			return user;
-		}else{
-			throw new UsernameNotFoundException ("Username " + username + " not found!");
-		}
-	}
 }
 
 

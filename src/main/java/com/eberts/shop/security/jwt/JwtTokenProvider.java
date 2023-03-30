@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.eberts.shop.models.vo.security.TokenVo;
 import com.eberts.shop.resources.exceptions.InvalidJwtAuthenticationException;
+import com.eberts.shop.services.AuthenticationService;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,11 @@ public class JwtTokenProvider {
     @Value("${security.jwt.token.expire-length:3600000}")
     private long validityInMilliseconds= 3600000;
 
-    private UserDetailsService userDetailsService;
-    @Autowired
-    public JwtTokenProvider(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+
+    private AuthenticationService authenticationService;
+
+    public JwtTokenProvider(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
     Algorithm algorithm = null;
@@ -78,7 +80,7 @@ public class JwtTokenProvider {
 
     public Authentication getAuthentication (String token){
         DecodedJWT decodedJWT = decodedToken(token);
-        UserDetails userDetails = this.userDetailsService.loadUserByUsername(decodedJWT.getSubject());
+        UserDetails userDetails = this.authenticationService.loadUserByUsername(decodedJWT.getSubject());
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
@@ -89,7 +91,7 @@ public class JwtTokenProvider {
         return decodedJWT;
     }
 
-    public String resoveToken (HttpServletRequest req){
+    public String resolveToken(HttpServletRequest req){
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null&& bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring("Bearer ".length());

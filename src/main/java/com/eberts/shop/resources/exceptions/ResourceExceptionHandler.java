@@ -32,7 +32,7 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError(HttpStatus.FORBIDDEN.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
 	}
-
+/*
 	@ExceptionHandler(InvalidJwtAuthenticationException.class)
 	public final ResponseEntity<StandardError> handleInvalidJwtAuthenticationExceptions(
 			Exception ex, WebRequest request) {
@@ -41,7 +41,7 @@ public class ResourceExceptionHandler {
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
 	}
-	
+	*/
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	ResponseEntity<StandardError> Validation(MethodArgumentNotValidException e, HttpServletRequest request){
 		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), "Validation Error", System.currentTimeMillis());
