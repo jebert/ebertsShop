@@ -33,14 +33,6 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
 	}
 
-	@ExceptionHandler(InvalidJwtAuthenticationException.class)
-	public final ResponseEntity<StandardError> handleInvalidJwtAuthenticationExceptions(
-			Exception ex, WebRequest request) {
-	//Integer status, String msg, long timeStamp
-		StandardError exceptionResponse = new StandardError(HttpStatus.FORBIDDEN.value(), ex.getMessage(), System.currentTimeMillis());
-
-		return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
-	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	ResponseEntity<StandardError> Validation(MethodArgumentNotValidException e, HttpServletRequest request){

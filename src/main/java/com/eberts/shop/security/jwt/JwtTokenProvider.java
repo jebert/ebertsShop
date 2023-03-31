@@ -24,17 +24,15 @@ import java.util.List;
 @Service
 public class JwtTokenProvider {
 
-    @Value("${security.jwt.token.secret-key:secret}")
+    @Value("${security.jwt.token.secret-key:N3tW0rk5}")
     private String secretKey;
 
     @Value("${security.jwt.token.expire-length:3600000}")
     private long validityInMilliseconds= 3600000;
 
-    private UserDetailsService userDetailsService;
     @Autowired
-    public JwtTokenProvider(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+    private UserDetailsService userDetailsService;
+
 
     Algorithm algorithm = null;
 
@@ -89,7 +87,7 @@ public class JwtTokenProvider {
         return decodedJWT;
     }
 
-    public String resoveToken (HttpServletRequest req){
+    public String resolveToken(HttpServletRequest req){
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null&& bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring("Bearer ".length());
