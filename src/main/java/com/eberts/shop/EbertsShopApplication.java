@@ -1,5 +1,9 @@
 package com.eberts.shop;
 
+import com.eberts.shop.models.User;
+import com.eberts.shop.services.UserService;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
@@ -15,6 +19,7 @@ public class EbertsShopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EbertsShopApplication.class, args);
 
+/**
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
 		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("",8,185000, Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
 		encoders.put("pbkdf2", pbkdf2Encoder);
@@ -25,7 +30,7 @@ public class EbertsShopApplication {
 		String cryptoPuser = passwordEncoder.encode("user123");
 		System.out.println(cryptoPuser);
 		String cryptoPclient = passwordEncoder.encode("client123");
-		System.out.println(cryptoPclient);
+		System.out.println(cryptoPclient);*/
 	}
 
 }

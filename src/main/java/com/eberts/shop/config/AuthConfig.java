@@ -1,6 +1,7 @@
 package com.eberts.shop.config;
 
 import com.eberts.shop.security.jwt.JwtConfigurer;
+import com.eberts.shop.security.jwt.JwtTokenFilter;
 import com.eberts.shop.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -26,7 +28,8 @@ public class AuthConfig {
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
-
+    @Autowired
+    private JwtTokenFilter jwtTokenFilter;
     @Bean
     public PasswordEncoder passwordEncoder(){
 
@@ -46,12 +49,13 @@ public class AuthConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
+        //http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.httpBasic().disable()
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/logout", "/swagger-ui/**", "/user", "/v3/api-docs/**" ,"/api-docs/**", "/address").permitAll()
-                .requestMatchers(HttpMethod.POST, "/auth/signin", "/user").permitAll()
+                .requestMatchers("/auth/signin", "/user").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().apply(new JwtConfigurer(jwtTokenProvider))
