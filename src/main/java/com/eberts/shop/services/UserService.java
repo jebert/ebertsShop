@@ -35,6 +35,11 @@ public class UserService implements UserDetailsService {
 		Optional<User> User = repository.findById(id);
 		return Optional.of(User.orElseThrow(()-> new ObjectNotFoundException("User not found with id:" + id.toString())));
 	}
+
+	public User findUserByUsername (String username){
+		var user = repository.findByUserName(username);
+		return user;
+	}
 	
 	@Transactional
 	public User saveUser (User User) {
@@ -53,8 +58,8 @@ public class UserService implements UserDetailsService {
 		var user = repository.findByUserName(username);
 		if (user != null) {
 			return user;
-		}else{
-			throw new UsernameNotFoundException ("Username " + username + " not found!");
+		} else {
+			throw new UsernameNotFoundException("Username " + username + " not found!");
 		}
 	}
 }

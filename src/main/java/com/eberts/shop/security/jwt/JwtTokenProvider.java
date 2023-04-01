@@ -30,6 +30,7 @@ public class JwtTokenProvider {
     @Value("${security.jwt.token.expire-length:3600000}")
     private long validityInMilliseconds= 3600000;
 
+    @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
     public JwtTokenProvider(UserDetailsService userDetailsService) {
@@ -89,7 +90,7 @@ public class JwtTokenProvider {
         return decodedJWT;
     }
 
-    public String resoveToken (HttpServletRequest req){
+    public String resolveToken(HttpServletRequest req){
         String bearerToken = req.getHeader("Authorization");
         if (bearerToken != null&& bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring("Bearer ".length());
